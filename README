@@ -1,0 +1,53 @@
+Verna Dorian-Alexandru
+334CC
+
+Dificultate: usor ~ mediu
+Timp: 6-7 ore
+
+Am ales sa integrez tema odata cu bonusul, ca sa nu mai modific
+dupa aceea multe linii de cod ca sa realizez bonusul. Fiecare
+proces de-al meu detine mai multi vectori in care se vor stoca
+workerii din fiecare cluster. De asemenea, am si niste variabile
+in care se retine numarul de workeri din fiecare cluster. De
+asemenea, fiecare proces are un lider, iar 0, 1 si 2 au liderul
+egal cu -1. Incep prin a citi din fisierele cluster0.txt,
+cluster1.txt si cluster2.txt, apoi trimit proceselor 2 si 1
+workerii lor. Nu trimit direct de la worker-ul 0 la 1. Mesajul
+care trebuies sa ajunga de la 0 la 1 trece prin 2. Dupa ce
+procesele lider de cluster primesc topologia, trimit topologia
+si workerilor, iar printarea o fac mai apoi cu ajutorul functiei
+print_topology. Dupa aceea calculez in task-ul 0 cate iteratii
+vin asignate fiecarui cluster, astfel incat impartirea sa se faca
+asa cum este spus in enunt (in functie de numarul de workeri din
+fiecare cluster). Dupa aceea trimit portiunile din vector catre
+fiecare worker din fiecare cluster folosind formulele de la
+laboratorul 1 pentru start si index. Trimiterea unui mesaj o
+marchez prin afisarea mesajului M(dest, sursa). In interiorul
+fiecarui worker dublez elementele, dupa care trimit la lider
+vectorul pe care l-am modificat. Dupa aceea fiecare lider
+trimite la procesul 0 vectorul lor si acesta vine apoi printat.
+
+Am o variabila de tipul int* V in care stochez vectorul care
+trebuie sa fie dublat. Procesul 0 contine tot vectorul, urmand
+ca urmatoarele procese (workerii) sa stocheze in V doar
+elementele pe care trebuie sa le dubleze. Recompunerea vectorului
+dupa dublare se face in ordinea in care a fost facut impartirea
+(practic fac inversul impartirii). 
+
+Mai folosesc si conceptul de bariera pentru a sincroniza aceste
+procese. Nu trec la impartirea task-urilor pana cand nu termin
+de printat topologiile. De asemenea, mai am o bariera care vine
+dupa ce se dubleaza elementele. Nu pot sa trec la refacerea
+vectorului daca nu am terminat dublarea elementelor in fiecare
+worker. Am mai pus o bariera si la final, inainte de printarea
+finala (a rezultatului)
+
+Am pus multe comentarii in cod pentru o mai buna intelegere.
+
+Consider ca a fost o tema ok si ca facand-o am invatat sa
+folosesc mai bine mpi.
+
+Felicitari pentru tema si keep up the good work!
+
+Verna Dorian-Alexandru
+334CC
